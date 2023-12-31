@@ -9,8 +9,7 @@
 ;; 全局 Company-mode
 (use-package company
   :ensure t
-  :config
-  (global-company-mode))
+  :hook (prog-mode . company-mode))
 
 (provide 'init-misc-config)
 ;;; init-misc-config.el ends here
