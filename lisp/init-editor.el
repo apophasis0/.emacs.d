@@ -7,6 +7,41 @@
 ;; warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
 
+;;; For the built-in themes which cannot use `require'.
+(use-package emacs
+  :config
+  (require-theme 'modus-themes) ; `require-theme' is ONLY for the built-in Modus themes
+
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil)
+
+  ;; Maybe define some palette overrides, such as by using our presets
+  (setq modus-themes-common-palette-overrides
+        modus-themes-preset-overrides-intense)
+
+  ;; Load the theme of your choice.
+  (load-theme 'modus-operandi)
+
+  (define-key global-map (kbd "<f5>") #'modus-themes-toggle))
+
+;;; For packaged versions which must use `require'.
+(use-package modus-themes
+  :ensure t
+  :config
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil)
+
+  ;; Maybe define some palette overrides, such as by using our presets
+  (setq modus-themes-common-palette-overrides
+        modus-themes-preset-overrides-intense)
+
+  ;; Load the theme of your choice.
+  (load-theme 'modus-vivendi)
+
+  (define-key global-map (kbd "<f5>") #'modus-themes-toggle))
+
 ;; 关闭工具栏
 (tool-bar-mode -1)
 
@@ -21,6 +56,9 @@
 
 ;; 最近编辑的文件
 (recentf-mode 1)
+
+;; 全局自动换行
+(global-visual-line-mode 1)
 
 ;; 显示匹配的括号
 (setq show-paren-delay 0)
